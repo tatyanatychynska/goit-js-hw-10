@@ -50,7 +50,6 @@ startBtn.addEventListener('click', () => {
 
         if (leftTime < 1000) {
             clearInterval(timerId);
-            startBtn.disabled = false;
             inputDate.disabled = false;
 
             return;
