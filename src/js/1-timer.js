@@ -5,7 +5,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 const inputDate = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
-const daysShow = document.querySelector('[data-hours]');
+const daysShow = document.querySelector('[data-days]');
 const hoursShow = document.querySelector('[data-hours]');
 const minutesShow = document.querySelector('[data-minutes]');
 const secondsShow = document.querySelector('[data-seconds]');
@@ -24,7 +24,7 @@ let leftTime;
         onClose(selectedDates) {
             userSelectedDate = selectedDates[0];  
             const now = new Date();
-            if (userSelectedDate < now) {
+            if (userSelectedDate <= now) {
                 iziToast.show({
                     icon: 'ico-error',
                     title: 'Error',
@@ -47,7 +47,9 @@ startBtn.addEventListener('click', () => {
     startBtn.disabled = true;
     inputDate.disabled = true;
     const timerId = setInterval(() => {
-
+        
+        leftTime = userSelectedDate - new Date();
+        
         if (leftTime < 1000) {
             clearInterval(timerId);
             inputDate.disabled = false;
@@ -55,7 +57,6 @@ startBtn.addEventListener('click', () => {
             return;
         }
 
-        leftTime = userSelectedDate - new Date();
         let time = convertMs(leftTime);
         daysShow.textContent = addLeadingZero(time.days);
         hoursShow.textContent = addLeadingZero(time.hours);

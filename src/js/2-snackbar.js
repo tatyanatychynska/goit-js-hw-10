@@ -14,10 +14,10 @@ const delay = Number(form.elements.delay.value);
     const promise = new Promise((res,rej) => {
         setTimeout(() => {
             if (state === "fulfilled") {
-                res();
+                res(delay);
 
             } else {
-                rej();
+                rej(delay);
             }
             }, delay)
     });
@@ -43,5 +43,5 @@ const delay = Number(form.elements.delay.value);
         
     }
     
-    promise.then(onFulfield, onReject);
+    promise.then(onFulfield).catch(onReject);
 })
