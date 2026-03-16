@@ -50,7 +50,7 @@ startBtn.addEventListener('click', () => {
         
         leftTime = userSelectedDate - new Date();
         
-        if (leftTime < 800) {
+        if (leftTime < 0) {
             clearInterval(timerId);
             inputDate.disabled = false;
 
